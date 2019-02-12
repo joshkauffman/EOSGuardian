@@ -90,46 +90,6 @@ public:
         w.erase(itr);
     }
 
-    // @abi action setblacklist
-    void setblacklist(account_name account){
-
-    require_auth(_self);
-
-    blacklist_table b(_self, _self);
-    auto itr = b.find(account);
-    eosio_assert(itr == b.end(), "account already exist in blacklist");
-    b.emplace(_self, [&](auto &i) {
-        i.account = _self;
-        i.created_at = now();
-        });
-    }
-
-    // @abi action delblacklist
-    void delblacklist(account_name account){
-
-        require_auth(_self);
-
-        blacklist_table b(_self, _self);
-        auto itr = b.find(account);
-        eosio_assert(itr != b.end(), "account not found in blacklist");
-        b.erase(itr);
-    }
-
-
-    // @abi action safedelegate
-    void safedelegate(account_name to,
-                    asset net_weight,
-                    asset cpu_weight){
-
-      require_auth(_self);
-
-      eosio_assert(net_weight.symbol==EOS_SYMBOL, "only support EOS");
-      eosio_assert(cpu_weight.symbol==EOS_SYMBOL, "only support EOS");
-
-      INLINE_ACTION_SENDER(eosiosystem::system_contract, delegatebw)
-      (N(eosio), {{_self, N(guardianperm)}}, {_self, to, net_weight, cpu_weight, false});
-    }
-
     // @abi action safetransfer
     void safetransfer(account_name to,
                     asset quantity,
@@ -139,7 +99,6 @@ public:
 
       eosio_assert(quantity.symbol==EOS_SYMBOL, "only support EOS");
 
-      validate_blacklist(_self, to);
       validate_transfer(_self, to, quantity);
 
       INLINE_ACTION_SENDER(eosio::token, transfer)
@@ -158,8 +117,6 @@ public:
                 (setsettings)
                 (setwhitelist)
                 (delwhitelist)
-                (setblacklist)
-                (delblacklist)
             )
         };
     }

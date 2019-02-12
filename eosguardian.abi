@@ -26,17 +26,6 @@
         }
       ]
     },{
-      "name": "blacklist",
-      "base": "",
-      "fields": [{
-          "name": "account",
-          "type": "name"
-        },{
-          "name": "created_at",
-          "type": "uint64"
-        }
-      ]
-    },{
       "name": "whitelist",
       "base": "",
       "fields": [{
@@ -116,36 +105,6 @@
         }
       ]
     },{
-      "name": "setblacklist",
-      "base": "",
-      "fields": [{
-          "name": "account",
-          "type": "name"
-        }
-      ]
-    },{
-      "name": "delblacklist",
-      "base": "",
-      "fields": [{
-          "name": "account",
-          "type": "name"
-        }
-      ]
-    },{
-      "name": "safedelegate",
-      "base": "",
-      "fields": [{
-          "name": "to",
-          "type": "name"
-        },{
-          "name": "net_weight",
-          "type": "asset"
-        },{
-          "name": "cpu_weight",
-          "type": "asset"
-        }
-      ]
-    },{
       "name": "safetransfer",
       "base": "",
       "fields": [{
@@ -174,18 +133,6 @@
       "type": "delwhitelist",
       "ricardian_contract": ""
     },{
-      "name": "setblacklist",
-      "type": "setblacklist",
-      "ricardian_contract": ""
-    },{
-      "name": "delblacklist",
-      "type": "delblacklist",
-      "ricardian_contract": ""
-    },{
-      "name": "safedelegate",
-      "type": "safedelegate",
-      "ricardian_contract": ""
-    },{
       "name": "safetransfer",
       "type": "safetransfer",
       "ricardian_contract": ""
@@ -201,16 +148,6 @@
         "name"
       ],
       "type": "settings"
-    },{
-      "name": "blacklist",
-      "index_type": "i64",
-      "key_names": [
-        "account"
-      ],
-      "key_types": [
-        "name"
-      ],
-      "type": "blacklist"
     },{
       "name": "whitelist",
       "index_type": "i64",

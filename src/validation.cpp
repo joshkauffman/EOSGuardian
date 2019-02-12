@@ -4,13 +4,6 @@ using namespace guardian;
 using std::string;
 
 namespace validation {
-    // validate blacklist
-    void validate_blacklist(account_name code, account_name to) {
-        blacklist_table b(code, code);
-        auto itr = b.find(to);
-        eosio_assert(itr == b.end(), "account in blacklist");
-    }
-
     // delete expired records
     void delete_records(account_name code, const std::vector<uint64_t>& ids=std::vector<uint64_t>()) {
         txrecord_table t(code, code);
